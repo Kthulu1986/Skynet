@@ -9,6 +9,7 @@ export default () => {
     function ingresar() {
 
         // aqui se inica el logeo usando api de google sign
+        /* y el resuktado sera una user que luego es leido en el componente "Navigation" variable ´user´ */
         alert('tito tapia');
     }
 

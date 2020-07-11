@@ -16,13 +16,15 @@ import ScreenLogin from '../screens/ScreenLogin';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
 
   const [isLoading, setIsLoading] = React.useState(true);
+
+  // esta variable se cargara desde boton google o cando valida si ya tiene session iniciada.
   const [user, setUser] = React.useState(false);
 
   React.useEffect(() => {
 
     //aqui se validara si usuario tiene session iniciada
 
-    //simulare un tiempo de carga 1 seg
+    //simulare un tiempo de carga 3 seg
     setTimeout(() => {
       setIsLoading(!isLoading);
     }, 3000);
