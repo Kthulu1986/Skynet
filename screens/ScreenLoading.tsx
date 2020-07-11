@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, ImageBackground } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, ActivityIndicator, ImageBackground } from 'react-native';
+
+const logo = require('../assets/images/imageLoading.jpeg');
 
 
-
-export default function Loading() {
+export default function ScreenLoading() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Skynet</Text>
-
+      <ImageBackground source={logo} style={styles.bgImagen} ></ImageBackground>
       <ActivityIndicator size='large' />
     </View>
-
   );
 
 }
 
-
+//estilos 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,6 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   bgImagen: {
     backgroundColor: 'transparent',
     alignItems: 'center',
@@ -31,10 +31,4 @@ const styles = StyleSheet.create({
     width: 180,
     height: 200
   },
-  titulo: {
-    fontFamily: 'fontTitulo',
-    fontSize: 36,
-    paddingTop: 10,
-    color: 'white',
-  }
 });

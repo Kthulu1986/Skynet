@@ -8,14 +8,34 @@ import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
+import Loading from '../screens/ScreenLoading';
+import ScreenLogin from '../screens/ScreenLogin';
+
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [user, setUser] = React.useState(false);
+
+  React.useEffect(() => {
+
+    //aqui se validara si usuario tiene session iniciada
+
+    //simulare un tiempo de carga 1 seg
+    setTimeout(() => {
+      setIsLoading(!isLoading);
+    }, 3000);
+
+  }, []);
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
+
+      {isLoading ? < Loading /> : user ? <RootNavigator /> : < ScreenLogin />}
+
     </NavigationContainer>
   );
 }
