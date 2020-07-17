@@ -10,12 +10,13 @@ import LinkingConfiguration from './LinkingConfiguration';
 
 import Loading from '../screens/ScreenLoading';
 import ScreenLogin from '../screens/ScreenLogin';
+import ScreenSplash from '../screens/ScreenSplash';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
 
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   // esta variable se cargara desde boton google o cando valida si ya tiene session iniciada.
   const [user, setUser] = React.useState(false);
@@ -24,10 +25,10 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 
     //aqui se validara si usuario tiene session iniciada
 
-    //simulare un tiempo de carga 3 seg
+    //simulare un tiempo de carga 4 seg
     setTimeout(() => {
-      setIsLoading(!isLoading);
-    }, 3000);
+      setUser(true);
+    }, 4000);
 
   }, []);
 
@@ -36,7 +37,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
 
-      {isLoading ? < Loading /> : user ? <RootNavigator /> : < ScreenLogin />}
+      { user ? <RootNavigator /> : < ScreenSplash />}
 
     </NavigationContainer>
   );
