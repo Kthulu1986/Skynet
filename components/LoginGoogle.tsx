@@ -1,28 +1,52 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import * as Google from "expo-google-app-auth";
+import * as GoogleSignIn from "expo-google-sign-in";
+import * as firebase from 'firebase';
 
 const Google_icon = require('../assets/images/Google_icon.png');
+const IOS_CLIENT_ID = "813579348442-sdk92jvi4ht83c7deitfe5ntmnh2bkh2.apps.googleusercontent.com"
 
 export default () => {
 
 
-    function ingresar() {
+    async function signInWithGoogleAsync() {
 
-        // aqui se inica el logeo usando api de google sign
-        /* y el resuktado sera una user que luego es leido en el componente "Navigation" variable ´user´ */
-        alert('tito tapia');
+        try {
+            const result = await Google.logInAsync({
+             //androidClientId: YOUR_CLIENT_ID_HERE,--
+              iosClientId: "813579348442-sdk92jvi4ht83c7deitfe5ntmnh2bkh2.apps.googleusercontent.com",
+              scopes: ['profile', 'email'],
+            });
+
+        /*const { type, accessToken } = await Google.logInAsync({
+            iosClientId: "813579348442-sdk92jvi4ht83c7deitfe5ntmnh2bkh2.apps.googleusercontent.com",
+            androidClientId: `<YOUR_ANDROID_CLIENT_ID_FOR_EXPO>`,
+            iosStandaloneAppClientId: `<YOUR_IOS_CLIENT_ID>`,
+            androidStandaloneAppClientId: `<YOUR_ANDROID_CLIENT_ID>`,
+          });*/
+          if (result.type === 'success') {
+            return result.accessToken;
+          } else {
+            return { cancelled: true };
+          }
+        } 
+        catch (e) {
+          return { error: true };
+        }           
     }
 
-
-    return (
-        <View style={styles.container} >
-            <TouchableOpacity style={styles.GooglePlusStyle} activeOpacity={0.5} onPress={() => ingresar()}>
-                <Image source={Google_icon} style={styles.ImageIconStyle} />
-                <View style={styles.SeparatorLine} />
-                <Text style={styles.TextStyle}> Ingresar Usando Google  </Text>
-            </TouchableOpacity>
-        </View>
-    )
+        
+        return (
+            <View style={styles.container} >
+                <TouchableOpacity style={styles.GooglePlusStyle} activeOpacity={0.5} onPress={() => signInWithGoogleAsync()}>
+                    <Image source={Google_icon} style={styles.ImageIconStyle} />
+                    <View style={styles.SeparatorLine} />
+                    <Text style={styles.TextStyle}> Ingresar Usando Google  </Text>
+                </TouchableOpacity>
+            </View>
+        )
+    
 }
 
 const styles = StyleSheet.create({
