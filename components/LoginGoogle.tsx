@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import * as Google from "expo-google-app-auth";
+import { NavigationHelpersContext } from '@react-navigation/native';
 
 
 const Google_icon = require('../assets/images/Google_icon.png');
 const IOS_CLIENT_ID = "813579348442-sdk92jvi4ht83c7deitfe5ntmnh2bkh2.apps.googleusercontent.com"
 
 export default () => {
-
 
     async function signInWithGoogleAsync() {
 
@@ -18,13 +18,10 @@ export default () => {
               scopes: ['profile', 'email'],
             });
 
-        /*const { type, accessToken } = await Google.logInAsync({
-            iosClientId: "813579348442-sdk92jvi4ht83c7deitfe5ntmnh2bkh2.apps.googleusercontent.com",
-            androidClientId: `<YOUR_ANDROID_CLIENT_ID_FOR_EXPO>`,
-            iosStandaloneAppClientId: `<YOUR_IOS_CLIENT_ID>`,
-            androidStandaloneAppClientId: `<YOUR_ANDROID_CLIENT_ID>`,
-          });*/
           if (result.type === 'success') {
+            console.log(result.user.name);
+            console.log(result.user.photoUrl);
+            
             return result.accessToken;
           } else {
             return { cancelled: true };

@@ -21,13 +21,15 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   // esta variable se cargara desde boton google o cando valida si ya tiene session iniciada.
   const [user, setUser] = React.useState(false);
 
+
+  
   React.useEffect(() => {
 
     //aqui se validara si usuario tiene session iniciada
-
+ 
     //simulare un tiempo de carga 4 seg
     setTimeout(() => {
-      setUser(true);
+     // setUser(true);
     }, 4000);
 
   }, []);
@@ -37,7 +39,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
 
-      { user ? <RootNavigator /> : < ScreenSplash />}
+      { user ? <RootNavigator /> : < ScreenLogin />}
 
     </NavigationContainer>
   );
