@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import * as Google from "expo-google-app-auth";
-import * as GoogleSignIn from "expo-google-sign-in";
-import * as firebase from 'firebase';
+
 
 const Google_icon = require('../assets/images/Google_icon.png');
 const IOS_CLIENT_ID = "813579348442-sdk92jvi4ht83c7deitfe5ntmnh2bkh2.apps.googleusercontent.com"
